@@ -15,6 +15,6 @@ def correlation(N, Mx1, Dx1, randomSignal1, Mx2=None, Dx2=None, randomSignal2=No
         cov = 0
         for t in area:
             cov += ((randomSignal1[t] - Mx1) * (randomSignal2[t + tau] - Mx2)) / (N - 1)
-        result.append(cov / (math.sqrt(Dx1) * math.sqrt(Dx2)))
+        result.append((cov / (math.sqrt(Dx1) * math.sqrt(Dx2))))
     endTime = time.time() - startTime - 1
     return result, endTime

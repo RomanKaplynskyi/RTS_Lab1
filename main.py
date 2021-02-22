@@ -14,21 +14,37 @@ print("Мат. очікуваання", numpy.mean(randomSignal))  # Вбудо�
 print("Дисперсія", numpy.var(randomSignal))     # Вбудована в numpy функція для обчислення Дисперсії
 
 autoCorr = correlation.correlation(N, Mx, Dx, randomSignal)[0]
+numpyAutoCorrelation = numpy.correlate(randomSignal, randomSignal, "same")
+print("numpyAutoCorrelation", numpyAutoCorrelation)
+
 plt.figure(1)
 plt.title("AutoCorrelation")
 plt.plot(list(range(len(autoCorr))), autoCorr)
 plt.savefig("AutoCorrelation.png")
 plt.close(1)
 
+plt.figure(1)
+plt.title("numpyAutoCorrelation")
+plt.plot(list(range(len(numpyAutoCorrelation))), numpyAutoCorrelation)
+plt.savefig("numpyAutoCorrelation.png")
+plt.close(1)
+
 randomSignal2 = generateRandomSignal(n, W, N)
 Mx2 = numpy.mean(randomSignal2)
 Dx2 = numpy.var(randomSignal2)
 interCorr = correlation.correlation(N, Mx, Dx, randomSignal, Mx2, Dx2, randomSignal2)[0]
+numpyInterCorrelation = numpy.correlate(randomSignal, randomSignal2, "same")
 
 plt.figure(2)
 plt.title("InterCorrelation")
 plt.plot(list(range(len(interCorr))), interCorr)
 plt.savefig("InterCorrelation.png")
+plt.close(2)
+
+plt.figure(2)
+plt.title("numpyInterCorrelation")
+plt.plot(list(range(len(numpyInterCorrelation))), numpyInterCorrelation)
+plt.savefig("numpyInterCorrelation.png")
 plt.close(2)
 
 time = range(N)
